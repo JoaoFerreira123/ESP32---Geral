@@ -1,18 +1,22 @@
 #include <Arduino.h>
 
 void setup() {
-  Serial.begin(9600);
-  pinMode(13, OUTPUT);
+  Serial.begin(115200);
+  ledcSetup(0, 9600, 8);
+  ledcAttachPin(27, 0);
 }
 
 
 void loop() {
-  char state = Serial.read();
-  if(state == '1'){
-    digitalWrite(13, HIGH);
-  }else if(state == '0'){
-    digitalWrite(13, LOW);
+  if(Serial.available() > 0){
+  //só vai ser se tiver /, ou seja, só quando tiver um numero -> não lê o tempo todo
+  String state = Serial.readStringUntil('/');
+  Serial.flush();
+
+  uint8_t valor = state.toInt();
+  ledcWrite(0, valor);
   }
+  
 
 
 }
