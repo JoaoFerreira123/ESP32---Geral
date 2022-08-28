@@ -1,12 +1,12 @@
 #include <Arduino.h>
 
-#define verde 2
-#define vermelho 4
-#define azul 5
+#define vermelho 21
+#define verde 19
+#define azul 18
 
 void setup() { 
-  ledcAttachPin(verde, 1); // assign RGB led pins to channels
-  ledcAttachPin(vermelho, 2);
+  ledcAttachPin(vermelho, 1);
+  ledcAttachPin(verde, 2); // assign RGB led pins to channels
   ledcAttachPin(azul, 3);
 
   // Initialize channels 
@@ -15,11 +15,14 @@ void setup() {
   ledcSetup(1, 12000, 8); // 12 kHz PWM, 8-bit resolution
   ledcSetup(2, 12000, 8);
   ledcSetup(3, 12000, 8);
+  
 
+  pinMode(2, OUTPUT);
 }
 
 void loop() {
-  ledcWrite(1, 255);
-  delay(2000);
- 
+  ledcWrite(1, 0);
+  ledcWrite(2, 151);
+  ledcWrite(3, 157);
+  
 }
