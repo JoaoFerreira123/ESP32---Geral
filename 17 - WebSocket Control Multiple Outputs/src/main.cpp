@@ -70,7 +70,7 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
 
 // Função que lida com as etapas de conexão do WebSocket
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type,
-             void *arg, uint8_t *data, size_t len) {
+  void *arg, uint8_t *data, size_t len) {
   switch (type) {
     case WS_EVT_CONNECT:                  // quando o cliente está logado
       Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
